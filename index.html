@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d18">
+<title>Turbo Gaming</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080d18;color:#eef4ff;
+ font-family:Arial,sans-serif;padding:20px;
+}
+header{display:flex;justify-content:space-between;align-items:center}
+h1{font-size:25px;color:#39e6b0}
+small{color:#8998ae}
+.card{
+ background:#111c2d;border:1px solid #263750;
+ border-radius:15px;padding:17px;margin-top:16px;
+}
+h2{font-size:17px;margin:0 0 14px}
+.status{color:#39e6b0;font-size:13px}
+button,select{
+ width:100%;padding:14px;border:0;border-radius:10px;
+ background:#1c3049;color:white;font-size:15px;
+ margin-top:9px;
+}
+button.primary{background:#08b88b;color:#06150f;font-weight:bold}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.metric{background:#17263a;padding:13px;border-radius:10px}
+.metric strong{display:block;font-size:20px;margin-top:8px}
+.metric span{font-size:12px;color:#94a8c2}
+footer{text-align:center;color:#708198;margin-top:25px;font-size:12px}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div>
+  <h1> TURBO GAMING </h1>
+  <small>Android Performance Center</small>
+ </div>
+ <span class="status">● ONLINE</span>
+</header>
+
+<div class="card">
+ <h2>Dispositivo</h2>
+ <div class="grid">
+  <div class="metric">
+   <span>Modelo</span>
+   <strong id="device">Android</strong>
+  </div>
+  <div class="metric">
+   <span>Plataforma</span>
+   <strong>Android</strong>
+  </div>
+ </div>
+</div>
+
+<div class="card">
+ <h2>Modo de desempenho</h2>
+ <button onclick="mode('Equilibrado')">Equilibrado</button>
+ <button onclick="mode('Desempenho')">Alto desempenho</button>
+ <button onclick="mode('Economia')">Economia de energia</button>
+ <p class="status" id="modeStatus">Modo selecionado: Equilibrado</p>
+</div>
+
+<div class="card">
+ <h2>Controle de resolução</h2>
+ <small>Selecione uma resolução para configurar posteriormente.</small>
+ <select id="resolution">
+  <option value="100%">Original (100%)</option>
+  <option value="90%">90%</option>
+  <option value="80%">80%</option>
+  <option value="70%">70%</option>
+  <option value="60%">60%</option>
+ </select>
+ <button class="primary" onclick="resolution()">Selecionar resolução</button>
+ <p class="status" id="resStatus">Aguardando integração nativa.</p>
+</div>
+
+<div class="card">
+ <h2>Integração Shizuku</h2>
+ <p id="shizukuStatus">Integração nativa ainda não instalada.</p>
+ <button onclick="checkShizuku()">Verificar integração</button>
+</div>
+
+<div class="card">
+ <h2>Otimização de jogos</h2>
+ <button onclick="alert('Painel de otimização: integração nativa pendente.')">
+ Abrir painel gamer
+ </button>
+ <button onclick="alert('Monitoramento real depende da integração Android.')">
+ Monitoramento do sistema
+ </button>
+</div>
+
+<footer>
+ TURBO GAMING • Android Performance Center
+ <br>Versão 1.0
+</footer>
+
+<script>
+function mode(name){
+ document.getElementById("modeStatus").textContent=
+ "Modo selecionado: "+name+" (interface)";
+}
+
+function resolution(){
+ let value=document.getElementById("resolution").value;
+ document.getElementById("resStatus").textContent=
+ "Resolução escolhida: "+value+
+ ". Aguardando integração Android.";
+}
+
+function checkShizuku(){
+ document.getElementById("shizukuStatus").textContent=
+ "Ponte nativa Shizuku ainda não conectada.";
+}
+
+document.getElementById("device").textContent=
+ navigator.userAgent.match(/Android/i) ? "Android" : "Dispositivo";
+</script>
+
+</body>
+</html>
